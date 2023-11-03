@@ -6,7 +6,11 @@ const router = express.Router()
 const sequelize = require("../database/connection/connection")
 const uuid = require('uuid').v4
 
-router.get('/libraries', async (req, res) => {
+router.get('/', (req, res) => {
+    res.sendFile("/skaffaleapp/dist/index.html");
+})
+
+router.get('/api/libraries', async (req, res) => {
     sequelize.sync().then(() => {
         Libraries.findAll().then(result => {
             res.send(result)
@@ -20,7 +24,7 @@ router.get('/libraries', async (req, res) => {
     })
 })
 
-router.get('/projects', async (req, res) => {
+router.get('/api/projects', async (req, res) => {
     sequelize.sync().then(() => {
         Projects.findAll().then(result => {
             res.send(result)
@@ -35,7 +39,7 @@ router.get('/projects', async (req, res) => {
     })
 })
 
-router.post('/newLibrary', async (req, res) => {
+router.post('/api/newLibrary', async (req, res) => {
     if (await checkRequiredParameters(req.body)) {
         sequelize.sync().then(() => {
             Libraries.create({ ...req.body, id: uuid() }).then(result => {
@@ -53,7 +57,7 @@ router.post('/newLibrary', async (req, res) => {
     }
 })
 
-router.post('/newProject', async (req, res) => {
+router.post('/api/newProject', async (req, res) => {
     if (await checkRequiredParameters(req.body)) {
         sequelize.sync().then(() => {
             Projects.create({ ...req.body, id: uuid() }).then(result => {

@@ -1,20 +1,10 @@
 version: '3.8'
 
 services:
-  client:
-    image: skaffaleclient-image
-    build: ./client
-    container_name: skaffaleclient-container
-    restart: always
-    ports:
-      - 8080:8080
-    depends_on:
-      - server
-
-  server:
-    image: skaffaleapi-image
-    build: ./server
-    container_name: skaffaleapi-container
+  app:
+    image: skaffaleapp-image
+    build: ./
+    container_name: skaffaleapp-container
     restart: always
     env_file:
       - ./.env

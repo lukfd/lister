@@ -5,12 +5,13 @@ const routes = require('./routes/routes')
 const app = express()
 const port = 3000
 const corsOption = {
-    origin: ['http://localhost:8080'],
+    origin: ['http://localhost:3000'],
 }
 
 app.use(cors(corsOption))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(express.static('dist'))
 app.use(routes)
 
 app.listen(port, () => {
