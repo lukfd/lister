@@ -1,10 +1,19 @@
 include .env
 
+build-image:
+	docker build -t skaffaleapp-image .
+
+run-container:
+	docker run -d -p 3000:3000 --name skaffaleapp-container skaffaleapp-image
+
+connect-to-container:
+	docker exec -it skaffaleapp-container /bin/bash
+
 build:
 	docker compose up --build -d --remove-orphans
 
 initialize-database:
-	docker exec -d skaffaleapi-container node /skaffaleapi/database/setup/setup.js
+	docker exec -d skaffaleapp-container node /skaffaleapp/database/setup/setup.js
 
 dump-database:
 	@docker exec -i skaffaledatabase-container \
