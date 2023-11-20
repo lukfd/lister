@@ -5,7 +5,8 @@ import Toolbar from 'primevue/toolbar'
 <template>
     <Toolbar :pt="{ root: { class: 'border-none' } }">
         <template #start>
-            <p class="font-bold text-lg">Awesome Machine Learning</p>
+            <img href="/logo_skaffale.svg" height="10%" />
+            <p class="font-bold text-lg">Skaffale.com</p>
         </template>
 
         <template #end>
