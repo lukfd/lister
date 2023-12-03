@@ -53,16 +53,9 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: 'tag:ci'
 
-    #   - name: Kubernetes context
-    #     uses: Azure/k8s-set-context@v3
-    #     with:
-    #       method: kubeconfig
-    #       kubeconfig: ${{ secrets.KUBE_CONFIG }}
-
       - name: Deploy
         uses: actions-hub/kubectl@master
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: get nodes -v=10
-          # args: rollout restart deployment skaffale -n luca
+          args: rollout restart deployment skaffale -n luca
